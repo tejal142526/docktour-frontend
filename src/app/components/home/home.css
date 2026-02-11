@@ -1,0 +1,450 @@
+.mainSwiper {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 10px;
+}
+
+.mainSwiper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbSwiper {
+  height: 100px;
+}
+
+.thumbSwiper swiper-slide {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.thumbSwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.thumbSwiper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+swiper-container.newsSlider::part(pagination) {
+  position: relative;
+  margin-top: 40px;
+  text-align: right;
+}
+
+swiper-container.newsSlider::part(bullet),
+swiper-container.newsSlider::part(bullet-inactive),
+swiper-container.newsSlider::part(bullet-active) {
+  box-sizing: border-box !important;
+}
+
+swiper-container.newsSlider::part(bullet),
+swiper-container.newsSlider::part(bullet-inactive) {
+  width: 10px !important;
+  height: 10px !important;
+  padding: 0 !important;
+  border: 1px solid #1c3c6d !important;
+  background: transparent !important;
+  border-radius: 50% !important;
+  margin: 0 0 0 8px !important;
+}
+swiper-container.newsSlider::part(bullet-active) {
+  width: 10px !important;
+  height: 10px !important;
+  padding: 0 !important;
+  background: #1c3c6d !important;
+  border: 1px solid #1c3c6d !important;
+  border-radius: 50% !important;
+  margin: 0 0 0 8px !important;
+}
+
+.sector-wrapper,
+.sectorSwiper {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sector-wrapper {
+  padding: 84px 0;
+}
+
+.sectorSwiper,
+.sectorSwiper .swiper-slide {
+  height: 100vh;
+}
+
+
+:host ::ng-deep .sector-pagination .swiper-pagination-bullet {
+  width: 10px !important;
+  height: 10px !important;
+  background: transparent !important;
+  border: 1px solid #1c3c6d !important;
+  opacity: 1 !important;
+  margin: 7px 0 !important;
+  border-radius: 50% !important;
+}
+
+:host ::ng-deep .sector-pagination .swiper-pagination-bullet-active {
+  background: #1c3c6d !important;
+}
+
+.slide-content.position-absolute {
+  top: 0;
+  right: 0;
+  max-width: 590px;
+  padding-bottom: 0;
+  margin-top: 0;
+  background-color: rgb(248, 247, 245);
+  z-index: 10;
+}
+
+.story-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+.story-track {
+  display: flex;
+  gap: 60px;
+  transition: transform 0.6s ease;
+}
+
+.story-slide {
+  min-width: 750px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.story-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.story-card {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  width: 380px;
+  background: #f1f3f5;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+.story-card h3 {
+  font-weight: 700;
+  margin: 8px 0;
+}
+
+.story-card p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.arrow {
+  font-size: 22px;
+  text-decoration: none;
+}
+
+.story-prev,
+.story-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #EF4050;
+  border-radius: 30px;
+  padding: 14px 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  z-index: 99;
+  font-size: 19px;
+  line-height: 100%;
+  font-weight: 500;
+  color: #F8F7F5 !important;
+  transition: all 0.3s ease;
+  position: absolute !important;
+  z-index: 9999 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.story-next {
+  right: 18%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.story-prev {
+  left: 40px;
+}
+
+.story-next.cursor-follow {
+  /* position: fixed !important; */
+
+  width: 125px;
+  height: 47px;
+  padding: 14px 20px;
+  border-radius: 95px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  pointer-events: auto !important;
+  cursor: none !important;
+
+}
+.real-next{
+    position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #EF4050;
+   width: 125px;
+  height: 47px;
+  padding: 14px 20px;
+  border-radius: 95px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  z-index: 99;
+  font-size: 19px;
+  line-height: 100%;
+  font-weight: 500;
+  color: #F8F7F5 !important;
+  transition: all 0.3s ease;
+  position: absolute !important;
+  z-index: 10 !important;
+  transform: none !important;
+  transition: none !important;
+  right: 180px;
+}
+.real-next img{
+  margin: 0 5px;
+}
+.real-next svg{
+  display: none;
+}
+/* .rapid-section {
+  cursor: none !important; 
+} */
+.story-next.cursor-follow img {
+  /* display: none; */
+  display: block;
+  margin: 0 5px;
+}
+
+.story-next.cursor-follow span {
+  font-size: 19px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.story-next.hidden-default {
+  opacity: 0;
+  pointer-events: auto !important;
+}
+/* 
+.halfCenterSwiper {
+  padding: 40px 0;
+} */
+
+/* .halfCenterSwiper .swiper-slide {
+  width: 1100px;
+  height: 388px;
+  background: #d9eafd;
+  border-radius: 12px;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  transition: 0.4s ease;
+} */
+
+.healthcare-section.swiper-slide {
+    height: 700px;
+    /* padding-top: 60px; */
+    position: relative;
+    background-size: 100% 100% !important;
+}
+.halfCenterSwiper .swiper-slide-active {
+  opacity: 1;
+  background: #fff;
+}
+.halfCenterSwiper .swiper-wrapper {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.story-next span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 19px;
+  line-height: 100%;
+  color: #F8F7F5;
+  font-weight: 500;
+  margin: 0 8px;
+  display: inline-block;
+}
+
+.sector-card .inner-sector-card p {
+  width: 84%;
+}
+.swiper-slide .link-more {
+  position: absolute;
+  left: 20px;
+  bottom: 33px;
+  /* height: 35px; */
+  transition: 0.5s;
+}
+
+.swiper-slide .link-more svg {
+  transition: 0.5s;
+}
+
+.swiper-slide .link-more:hover {
+  left: 40px;
+}
+
+.swiper-slide .link-more:hover svg {
+  transform: scale(1.1);
+}
+
+.swiper-pagination {
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  opacity: 1;
+  margin: 0 5px !important;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  background: #1c3c6d;
+  width: 12px;
+  height: 12px;
+}
+
+.halfCenterSwiper .swiper-pagination {
+  position: relative;
+  /* top: 0;
+  right: 0;
+  display: flex;
+  gap: 0;
+  left: inherit;
+  width: auto; */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 0;
+}
+
+.halfCenterSwiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #9ba8c9;
+  opacity: 1;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.halfCenterSwiper .swiper-pagination-bullet-active {
+  width: 22px;
+  border-radius: 20px;
+  background: #1c3c6d;
+}
+.slider-counter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-50%);
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.slider-counter span {
+  font-weight: 700;
+}
+
+.counter-pagination-wrapper {
+  position: relative;
+}
+
+.story-next.cursor-follow {
+  pointer-events: none !important; 
+}
+
+.story-next.cursor-follow span {
+  pointer-events: auto !important; 
+}
+
+.story-next.cursor-follow svg {
+  pointer-events: auto !important;
+}
+
+swiper-container::part(bullet) {
+  width: 10px;
+  height: 10px;
+  border-radius: 100px;
+  border: 1px solid #ffffff;
+  background: transparent;
+  opacity: 1;
+  transition: all 0.3s ease;
+  margin: 0 4.5px;
+}
+
+swiper-container::part(bullet-active) {
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  opacity: 1;
+  transform: scale(1);
+}
+
+swiper-container::part(pagination) {
+  top: auto !important;
+  left: auto !important;
+  bottom: 50px;
+  right: 15px;
+  text-align: right;
+}
+
+@media (max-width: 768px){
+  .sector-wrapper-home.sector-wrapper, .sector-wrapper-home .sectorSwiper{
+    height: auto !important;
+  }
+  .sector-wrapper-home.sector-wrapper{
+    padding-top: 160px !important;
+  }
+  .sectorSwiper, .sectorSwiper .swiper-slide{
+    height: auto !important;
+  }
+  .healthcare-section.swiper-slide{
+    background-size: cover !important;
+    height: 742px;
+  }
+
+    .home-thumbsldier {
+    display: none;
+  }
+  .story-next,
+  .swiper-button-next.real-next{
+    display: none !important;
+  }
+
+   
+}

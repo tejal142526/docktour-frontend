@@ -1,0 +1,91 @@
+<div class="header" #hdr
+  [class.scrolled]="isScrolled"
+  [class.hidden]="isHidden"
+  [class.flow]="isFlow">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid px-0">
+      <div class="d-flex align-items-center inner-header-top">
+        <a class="navbar-brand" routerLink="/"><img src="assets/images/logo.svg" alt="" /></a>
+
+        <!-- <button
+          class="navbar-toggler"
+          type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button> -->
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+          <ul class="navbar-nav align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="about-us">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="sectors">Sectors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="solutions">Solutions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="how-we-work">How we work</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="impact-stories">Our Impact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="news">Media center</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="header-contact">
+        <!-- <a href="#contact" class="btn btn-contact">Contact</a> -->
+
+        <a routerLink="contact-us" class="btn btn-contact">
+          <span>Contact</span>
+        </a>
+      </div>
+
+      <div class="header-contact-mobile">
+        <!-- <a href="#contact" class="btn btn-contact">Contact</a> -->
+          <button
+            class="navbar-toggler-mobile"
+            style="display:block !important;"
+            (click)="isMenuOpen = !isMenuOpen">
+            <span class="navbar-toggler-icon" type="button"></span>
+          </button>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="mobile-menu" [class.active]="isMenuOpen">
+  <div class="close-menu" (click)="isMenuOpen = false">
+    <span></span>
+    <span></span>   
+  </div>
+
+
+    <ul class="navbar-nav align-items-lg-center">
+             <li class="nav-item">
+              <a class="nav-link" routerLink="about-us">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="sectors">Sectors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="solutions">Solutions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="how-we-work">How we work</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="impact-stories">Our Impact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="news">Media center</a>
+            </li>
+          </ul>
+
+        <a routerLink="contact-us" class="btn btn-contact">Contact</a>
+</div>
+
+<div #spacer class="spacer"></div>

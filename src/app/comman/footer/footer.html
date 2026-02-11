@@ -1,0 +1,116 @@
+<footer class="footer-section" data-aos="fade-in" data-aos-duration="1000">
+  <div class="container">
+    <div class="row">
+      <div class="col-12" data-aos="fade-up" data-aos-duration="1000">
+        <div class="explore-now" style="background-image: url('assets/images/explore-bg.png')">
+          <p class="overview-text white"><span></span>Docktour Mission</p>
+          <h4>Explore How We Bring Scalable Healthcare to Life</h4>
+          <a routerLink="contact-us" class="btn btn-sector bg-red mt-2"><span>Contact Us</span></a>
+          <img src="assets/images/expert-doctor.png" alt="image" />
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="footer-border"></div>
+      </div>
+
+      <div class="col-12 col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="newsletter-wrapper">
+          <div class="footer-logo">
+            <img src="assets/images/logo.svg" alt="footer-logo" />
+          </div>
+          <p class="newsletter-text">Stay updated with our latest insights and developments.</p>
+          <div class="subscribe-form d-flex gap-2">
+            <input type="email"  [formControl]="emailControl" class="email-input" placeholder="Youremail@gmail.com" />
+            
+            <button class="subscribe-btn btn btn-contact" (click)="onSubscribe()">
+              <span>Subscribe</span>
+            </button>
+          </div>
+          <div class="error-message" *ngIf="emailControl.touched && emailControl.errors?.['required']"><small>Email is Required</small></div>
+            <div class="error-message" *ngIf="emailControl.touched && emailControl.errors?.['email']"><small>Invalid Email</small></div>
+          <p class="privacy-text">By subscribing, you agree to our privacy policy.</p>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="row justify-content-end">
+          <div class="col-lg-5 col-md-12 mb-4">
+            <!--<h5 class="footer-heading">Company</h5>-->
+            <div class="d-flex gap-5 border-mobile-footer">
+              <ul class="footer-links">
+                <li><a routerLink="about-us">About us</a></li>
+                <li><a routerLink="solutions">Solutions</a></li>
+                <li><a routerLink="sectors">Sectors</a></li>
+                <li><a routerLink="how-we-work">How we work</a></li>
+                
+                <!-- <li><a href="#">Careers</a></li> -->
+              </ul>
+              <ul class="footer-links">
+                <li><a routerLink="news">News</a></li>
+                <!-- <li><a href="#">Events</a></li> -->
+                <!-- <li><a href="#">Blog</a></li> -->
+                <li><a routerLink="contact-us">Contact</a></li>
+                  <li><a routerLink="impact-stories">Impact Stories</a></li>
+
+              </ul>
+            </div>
+          </div>
+
+          <!-- Social Media -->
+          <div class="col-lg-4 col-md-12 mb-4">
+            <!-- <h5 class="footer-heading">Follow us on</h5> -->
+            <a href="javascript:void(0)" class="social-link mb-20">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M4.5 3.24219C3.67157 3.24219 3 3.91376 3 4.74219V19.7422C3 20.5706 3.67157 21.2422 4.5 21.2422H19.5C20.3284 21.2422 21 20.5706 21 19.7422V4.74219C21 3.91376 20.3284 3.24219 19.5 3.24219H4.5ZM8.52076 7.24491C8.52639 8.20116 7.81061 8.79038 6.96123 8.78616C6.16107 8.78194 5.46357 8.14491 5.46779 7.24632C5.47201 6.40116 6.13998 5.72194 7.00764 5.74163C7.88795 5.76132 8.52639 6.40679 8.52076 7.24491ZM12.2797 10.0039H9.75971H9.7583V18.5638H12.4217V18.3641C12.4217 17.9842 12.4214 17.6042 12.4211 17.2241C12.4203 16.2103 12.4194 15.1954 12.4246 14.1819C12.426 13.9358 12.4372 13.6799 12.5005 13.445C12.7381 12.5675 13.5271 12.0008 14.4074 12.1401C14.9727 12.2286 15.3467 12.5563 15.5042 13.0893C15.6013 13.4225 15.6449 13.7811 15.6491 14.1285C15.6605 15.1761 15.6589 16.2237 15.6573 17.2714C15.6567 17.6412 15.6561 18.0112 15.6561 18.381V18.5624H18.328V18.3571C18.328 17.9051 18.3278 17.4532 18.3275 17.0013C18.327 15.8718 18.3264 14.7423 18.3294 13.6124C18.3308 13.1019 18.276 12.5985 18.1508 12.1049C17.9638 11.3708 17.5771 10.7633 16.9485 10.3246C16.5027 10.0124 16.0133 9.81129 15.4663 9.78879C15.404 9.7862 15.3412 9.78281 15.2781 9.7794C14.9984 9.76428 14.7141 9.74892 14.4467 9.80285C13.6817 9.95613 13.0096 10.3063 12.5019 10.9236C12.4429 10.9944 12.3852 11.0663 12.2991 11.1736L12.2797 11.1979V10.0039ZM5.68164 18.5666H8.33242V10.0095H5.68164V18.5666Z"
+                  fill="#EF4050"
+                />
+              </svg>
+
+              <span>LinkedIn</span>
+            </a>
+            <a href="javascript:void(0)" class="social-link">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21.593 7.20301C21.4791 6.78041 21.2565 6.39501 20.9473 6.08518C20.6382 5.77534 20.2533 5.55187 19.831 5.43701C18.265 5.00701 12 5.00001 12 5.00001C12 5.00001 5.73596 4.99301 4.16896 5.40401C3.74689 5.52415 3.36279 5.75078 3.05353 6.06214C2.74427 6.3735 2.52025 6.75913 2.40296 7.18201C1.98996 8.74801 1.98596 11.996 1.98596 11.996C1.98596 11.996 1.98196 15.26 2.39196 16.81C2.62196 17.667 3.29696 18.344 4.15496 18.575C5.73696 19.005 11.985 19.012 11.985 19.012C11.985 19.012 18.25 19.019 19.816 18.609C20.2385 18.4943 20.6237 18.2714 20.9336 17.9622C21.2435 17.653 21.4673 17.2682 21.583 16.846C21.997 15.281 22 12.034 22 12.034C22 12.034 22.02 8.76901 21.593 7.20301ZM9.99596 15.005L10.001 9.00501L15.208 12.01L9.99596 15.005Z"
+                  fill="#EF4050"
+                />
+              </svg>
+
+              <span>Youtube</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="copyright">© 2025 DockTour. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="footer-bottom-links">
+                        <li><a href="javascript:void(0)">Privacy policy</a></li>
+                        <li><a href="javascript:void(0)">Terms of service</a></li>
+                        <li><a href="javascript:void(0)">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+  </div>
+</footer>

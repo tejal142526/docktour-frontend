@@ -1,0 +1,162 @@
+<section class="section about_overview_sect" style="background-color: #1c3c6d">
+  <div class="container">
+    <div class="row about-gutter-x align-items-center">
+      <div class="col-12 col-md-12">
+        <div
+          class="about-content mw-100 solution-cont inner_banner_cont"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <app-breadcrumb [pageTitle]="title"></app-breadcrumb>
+          <ul class="taging">
+            <li>{{ data?._embedded?.['wp:term']?.[0]?.[0]?.name }}</li>
+            <li>{{ data?.date | date: 'MMM dd, yyyy' }}</li>
+            <li>{{ data?.acf_fields?.stories_read_time }}</li>
+          </ul>
+          <h1 class="inner_banner_title" data-aos="fade-up" data-aos-delay="200">
+            {{ data?.title?.rendered }}
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="news-details-banner">
+    <img
+      [src]="data?._embedded?.['wp:featuredmedia']?.[0]?.source_url"
+      loading="lazy"
+      decoding="async"
+      [alt]="data?._embedded?.['wp:featuredmedia']?.[0]?.alt_text"
+      class="img-fluid"
+    />
+  </div>
+</section>
+
+<section class="news-details-content section">
+  <div class="container">
+    <div class="row">
+      @if (data?.acf_fields?.stories_pointers_container?.length > 0) {
+        <div class="">
+          <!-- <div class="divider-1"></div> -->
+          <div class="report_cont">
+            <div class="row">
+              <div class="col-12 col-md-10 mx-auto">
+                <div class="row">
+              @for (modalData of data?.acf_fields?.stories_pointers_container; track $index) {
+                @if (modalData) {
+                  <!-- <div class="divider-1"></div> -->
+                  @if (modalData?.stories_container_heading) {
+                    <div class="col-12">
+                      <h4 class="modal-subtitle">{{ modalData?.stories_container_heading }}</h4>
+                    </div>
+                  }
+
+                  @if (modalData?.stories_pointers_paragraph) {
+                    <div class="col-12">
+                      <h4 class="modal-subtext mt-0">{{ modalData?.stories_pointers_paragraph }}</h4>
+                    </div>
+                  }
+                  @for (pointers of modalData?.stories_details_pointers; track $index) {
+                    <div class="col-12 col-md-6" data-aos="slide-up">
+                      <div class="trust-cont modal-check-list mb-4">
+                        @if (pointers?.stories_pointers_heading) {
+                          <h4
+                            class="d-flex align-items-center gap-2 mb-2"
+                            [ngClass]="{
+                              'heading-large': pointers?.stories_pointers_icon?.url,
+                              'image-empty': !pointers?.stories_pointers_icon?.url,
+                            }"
+                          >
+                            @if (pointers?.stories_pointers_icon?.url) {
+                              <img
+                                [src]="pointers?.stories_pointers_icon?.url"
+                                [alt]="'red tick icon'"
+                                class="red-tick"
+                              />
+                            }
+                            {{ pointers?.stories_pointers_heading }}
+                          </h4>
+                        }
+                        @if (pointers?.stories_pointers_desc) {
+                          <p>
+                            {{ pointers?.stories_pointers_desc }}
+                          </p>
+                        }
+                      </div>
+                    </div>
+                  }
+                }
+              }
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      } @else {
+        <div class="col-12 col-md-10 mx-auto" [innerHTML]="data?.content?.rendered"></div>
+      }
+
+      <div class="col-12 col-md-10 mx-auto">
+        <div class="shared-details">
+          <span>Share:</span>
+          <a [href]="linkedInShareLink" target="_blank">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M4.5 3.24219C3.67157 3.24219 3 3.91376 3 4.74219V19.7422C3 20.5706 3.67157 21.2422 4.5 21.2422H19.5C20.3284 21.2422 21 20.5706 21 19.7422V4.74219C21 3.91376 20.3284 3.24219 19.5 3.24219H4.5ZM8.52076 7.24491C8.52639 8.20116 7.81061 8.79038 6.96123 8.78616C6.16107 8.78194 5.46357 8.14491 5.46779 7.24632C5.47201 6.40116 6.13998 5.72194 7.00764 5.74163C7.88795 5.76132 8.52639 6.40679 8.52076 7.24491ZM12.2797 10.0039H9.75971H9.7583V18.5638H12.4217V18.3641C12.4217 17.9842 12.4214 17.6042 12.4211 17.2241C12.4203 16.2103 12.4194 15.1954 12.4246 14.1819C12.426 13.9358 12.4372 13.6799 12.5005 13.445C12.7381 12.5675 13.5271 12.0008 14.4074 12.1401C14.9727 12.2286 15.3467 12.5563 15.5042 13.0893C15.6013 13.4225 15.6449 13.7811 15.6491 14.1285C15.6605 15.1761 15.6589 16.2237 15.6573 17.2714C15.6567 17.6412 15.6561 18.0112 15.6561 18.381V18.5624H18.328V18.3571C18.328 17.9051 18.3278 17.4532 18.3275 17.0013C18.327 15.8718 18.3264 14.7423 18.3294 13.6124C18.3308 13.1019 18.276 12.5985 18.1508 12.1049C17.9638 11.3708 17.5771 10.7633 16.9485 10.3246C16.5027 10.0124 16.0133 9.81129 15.4663 9.78879C15.404 9.7862 15.3412 9.78281 15.2781 9.7794C14.9984 9.76428 14.7141 9.74892 14.4467 9.80285C13.6817 9.95613 13.0096 10.3063 12.5019 10.9236C12.4429 10.9944 12.3852 11.0663 12.2991 11.1736L12.2797 11.1979V10.0039ZM5.68164 18.5666H8.33242V10.0095H5.68164V18.5666Z"
+                fill="#EF4050"
+              />
+            </svg>
+            LinkedIn
+          </a>
+          <a [href]="fbShareLink" target="_blank">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_1468_4266)">
+                <mask
+                  id="mask0_1468_4266"
+                  style="mask-type: luminance"
+                  maskUnits="userSpaceOnUse"
+                  x="-2"
+                  y="-2"
+                  width="28"
+                  height="29"
+                >
+                  <path d="M-2 -1.75783H26V26.2422H-2V-1.75783Z" fill="white" />
+                </mask>
+                <g mask="url(#mask0_1468_4266)">
+                  <path
+                    d="M22 12.2412C22 6.71836 17.5228 2.2412 12 2.2412C6.47716 2.2412 2 6.71836 2 12.2412C2 16.931 5.2286 20.8661 9.58424 21.9467V15.297H7.52216V12.2412H9.58424V10.9244C9.58424 7.52076 11.1246 5.94316 14.4662 5.94316C15.0997 5.94316 16.1928 6.06736 16.64 6.1916V8.96176C16.404 8.93692 15.9941 8.92448 15.4848 8.92448C13.845 8.92448 13.2115 9.5456 13.2115 11.1605V12.2412H16.4778L15.9167 15.297H13.2115V22.168C18.1629 21.5699 22 17.3539 22 12.2412Z"
+                    fill="#EF4050"
+                  />
+                  <path
+                    d="M15.916 15.298L16.4772 12.2422H13.2108V11.1614C13.2108 9.54654 13.8444 8.92546 15.4841 8.92546C15.9934 8.92546 16.4033 8.93786 16.6394 8.9627V6.19258C16.1922 6.06834 15.099 5.9441 14.4655 5.9441C11.1239 5.9441 9.58357 7.52174 9.58357 10.9254V12.2422H7.52148V15.298H9.58357V21.9477C10.3573 22.1396 11.1663 22.2422 11.9993 22.2422C12.4095 22.2422 12.8136 22.2169 13.2108 22.1689V15.298H15.916Z"
+                    fill="#F8F7F5"
+                  />
+                </g>
+              </g>
+              <defs>
+                <clipPath id="clip0_1468_4266">
+                  <rect width="20" height="20" fill="white" transform="translate(2 2.24219)" />
+                </clipPath>
+              </defs>
+            </svg>
+
+            Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

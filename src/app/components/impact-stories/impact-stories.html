@@ -1,0 +1,282 @@
+<section
+  class="home-banner-section"
+  data-aos="fade-in"
+  data-aos-duration="1000"
+  data-aos-delay="200"
+>
+  <div
+    class="inner_banner_sect"
+    [style.background-image]="'url(' + pageData?.banner_bg_image?.url + ')'"
+  >
+    >
+    <div class="container">
+      <div class="inner_banner_cont">
+        <app-breadcrumb></app-breadcrumb>
+        <h1 class="inner_banner_title">{{ pageData?.banner_heading }}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section about_overview_sect" style="background-color: #1c3c6d">
+  <div class="container">
+    <div class="row about-gutter-x align-items-center">
+      <div class="col-12 col-md-12 col-lg-12">
+        <div class="about-content mw-100 solution-cont" data-aos="fade-up" data-aos-delay="200">
+          <!-- <div class="mission_text"
+              [innerHTML]="cards?.repeater_paragraph_description"></div> -->
+          <h5 data-aos="fade-up" data-aos-delay="200">
+            {{ pageData?.paragrapgh_description }}
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section
+  class="section"
+  style="background-color: #f8f7f5"
+  data-aos="fade-in"
+  data-aos-delay="200"
+  data-aos-duration="1000"
+>
+  <div class="container">
+    <div class="news-fillter">
+      <div class="news-dropdown">
+        <span>Sort:</span>
+        <select (change)="OnSort($event)">
+          <option value="date-desc">Newest first</option>
+          <option value="date-asc">Oldest first</option>
+          <option value="title-asc">A → Z</option>
+          <option value="title-desc">Z → A</option>
+        </select>
+      </div>
+    </div>
+    <div class="">
+      <p class="overview-text" data-aos="slide-up" data-aos-delay="200"><span></span>Stories</p>
+      <div class="d-flex align-items-center justify-content-between">
+        <h1 class="main-title" data-aos="slide-up" data-aos-delay="300">
+          Highlights From The Field
+        </h1>
+        <!-- <a href="javascript:Void(0)" class="btn btn-sector" data-aos="slide-up" data-aos-delay="400">
+                    <span>Discover More</span>
+                </a> -->
+      </div>
+    </div>
+    @if (storiesList.length > 0) {
+      <div class="row" data-aos-delay="200">
+        @for (item of storiesList; track $index) {
+          <div class="col-12 col-md-6 col-lg-4">
+            <div
+              class="news-card"
+              [style.background-image]="
+                'url(' + item?._embedded?.['wp:featuredmedia']?.[0]?.source_url + ')'
+              "
+            >
+              <div class="news-card-body">
+                <ul>
+                  <li>{{ item?._embedded?.['wp:term']?.[0]?.[0]?.name }}</li>
+                  <li>{{ item.date | date: 'MMM dd, yyyy' }}</li>
+                  <li>{{ item?.acf_fields?.stories_read_time }}</li>
+                </ul>
+                <h3>{{ item?.title?.rendered }}</h3>
+                <!-- <a
+                  href="javascript:void(0)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#myModal"
+                  (click)="openModal(item)"
+                  class="link-more position_chnge"
+                > -->
+                 <a
+                 [routerLink]="[item.slug]"
+                  class="link-more position_chnge"
+                > 
+                  <svg width="35" height="35" viewBox="0 0 35 35" fill="none">
+                    <circle cx="17.5" cy="17.5" r="17.5" fill="#1C3C6D" />
+                    <line
+                      x1="10.5"
+                      y1="21.56"
+                      x2="23.49"
+                      y2="14.06"
+                      stroke="#F8F7F5"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M13.92 11.5L23.49 14.06L20.92 23.62"
+                      stroke="#F8F7F5"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+    <div>
+      @if (totalPages > 1) {
+        <app-pagination
+          [TotalPages]="totalPages"
+          (pageChanged)="OnPageChange($event)"
+          [currentPage]="currentPage"
+        ></app-pagination>
+      }
+    </div>
+  </div>
+</section>
+
+@if (pageData?.repeater_cards?.length > 0) {
+  <section class="section pillars_main" style="background-color: #f8f7f5"  data-aos="fade-up" data-aos-delay="200">
+    <div class="container">
+      <div class="pillars_sect">
+        <p class="overview-text">
+          <span></span>{{ pageData?.repeatercard_label }}
+        </p>
+        <h3 class="name">
+          {{ pageData?.repeatercard_heading }}
+        </h3>
+        <div class="news-slider-full" >
+          <div class="swiper newsSlider card-height-wrapper mt-3 pb-5">
+            <div class="swiper-wrapper">
+              @for (item of pageData?.repeater_cards; track $index) {
+                <div class="swiper-slide">
+                  <div class="news-card-inner">
+                    <img
+                      class="icon"
+                      [alt]="item?.repeatercard_image?.alt"
+                      [src]="item?.repeatercard_image?.url"
+                    />
+                    <h4>{{ item?.repeatercard_title }}</h4>
+                    <p>{{ item?.repeatercard_description }}</p>
+                  </div>
+                </div>
+              }
+            </div>
+            <div class="news-pagination swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+}
+
+<!-- The Send report Modal -->
+<!-- <div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-dialog-centered solution_modal highlights-modal">
+    <div class="modal-content">
+   
+      <div class="modal-header">
+        <div class="padd_adjust">
+          <h4 class="modal-title">{{ selectedData?.title?.rendered }}</h4>
+   
+        </div>
+        <button type="button" data-bs-dismiss="modal" class="close-modal">
+          <img src="assets/images/cross-arrow.svg" alt="" class="" />
+        </button>
+      </div>
+
+      <div class="modal-body py-4 border-bottom-0">
+        <div class="report_cont">
+          <div class="row">
+            <div class="col-12 col-md-8" data-aos="slide-up">
+              <div class="trust-cont p-0 m-0">
+                <p [innerHTML]="selectedData?.content?.rendered"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- The Send report Modal -->
+<div class="modal fade modular-modal" id="myModal">
+  <div class="modal-dialog modal-dialog-centered solution_modal">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="padd_adjust">
+          <h4 class="modal-title">{{ selectedData?.title?.rendered }}</h4>
+          <!-- <p>
+          
+          </p> -->
+        </div>
+        <button type="button" data-bs-dismiss="modal" class="close-modal">
+          <img src="assets/images/cross-arrow.svg" alt="" class="" />
+        </button>
+      </div>
+      @if (selectedData?.acf_fields?.stories_pointers_container?.length > 0) {
+        <div class="modal-body">
+          <!-- <div class="divider-1"></div> -->
+          <div class="report_cont">
+            <div class="row">
+              @for (
+                modalData of selectedData?.acf_fields?.stories_pointers_container;
+                track $index
+              ) {
+                @if (modalData) {
+                  <div class="divider-1"></div>
+                  @if (modalData?.stories_container_heading) {
+                    <div class="col-12">
+                      <h4 class="modal-subtitle">{{ modalData?.stories_container_heading }}</h4>
+                    </div>
+                  }
+
+                  @if (modalData?.stories_pointers_paragraph) {
+                    <div class="col-12">
+                      <h4 class="modal-subtext">{{ modalData?.stories_pointers_paragraph }}</h4>
+                    </div>
+                  }
+                  @for (pointers of modalData?.stories_details_pointers; track $index) {
+                    <div class="col-12 col-md-6" data-aos="slide-up">
+                      <div class="trust-cont modal-check-list">
+                        @if (pointers?.stories_pointers_heading) {
+                          <h4
+                            class="d-flex align-items-center gap-2 mb-2"
+                            [ngClass]="{
+                              'heading-large': pointers?.stories_pointers_icon?.url,
+                              'image-empty': !pointers?.stories_pointers_icon?.url,
+                            }"
+                          >
+                            @if (pointers?.stories_pointers_icon?.url) {
+                              <img
+                                [src]="pointers?.stories_pointers_icon?.url"
+                                [alt]="'red tick icon'"
+                                class="red-tick"
+                              />
+                            }
+                            {{ pointers?.stories_pointers_heading }}
+                          </h4>
+                        }
+                        @if (pointers?.stories_pointers_desc) {
+                          <p>
+                            {{ pointers?.stories_pointers_desc }}
+                          </p>
+                        }
+                      </div>
+                    </div>
+                  }
+                }
+              }
+            </div>
+          </div>
+        </div>
+      } @else {
+        <div class="modal-body py-4 border-bottom-0">
+          <div class="report_cont">
+            <div class="row">
+              <div class="col-12 col-md-8" data-aos="slide-up">
+                <div class="trust-cont p-0 m-0">
+                  <p [innerHTML]="selectedData?.content?.rendered"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

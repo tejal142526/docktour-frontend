@@ -1,0 +1,30 @@
+<div class="pagination-container">
+  <button [disabled]="currentPage == 1" (click)="gotopage(currentPage -1 )">
+    
+<svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.81055 12.0303L1.06055 6.28027L6.81055 0.530274" stroke="#1C3C6D" stroke-width="1.5"/>
+</svg>
+
+  </button>
+  @for (pages of visiblePages; track $index) {
+    @if(pages != '...') {
+       <button
+     
+      (click)="gotopage(pages)"
+      [class]="currentPage == pages ? 'active' : ''"
+    >
+      {{ pages }}
+    </button>
+    } @else {
+      <span>...</span>
+    }
+   
+  }
+  <button [disabled]="currentPage == TotalPages" (click)="gotopage(currentPage + 1)">
+    
+<svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.53125 12.0303L6.28125 6.28027L0.531251 0.530274" stroke="#1C3C6D" stroke-width="1.5"/>
+</svg>
+
+  </button>
+</div>

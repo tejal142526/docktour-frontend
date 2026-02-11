@@ -1,0 +1,125 @@
+
+
+<section class="section about_overview_sect" style="background-color: #1c3c6d">
+    <div class="container">
+        <div class="row about-gutter-x align-items-center">
+            <div class="col-12 col-md-12">
+                <div class="about-content mw-100 solution-cont inner_banner_cont"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <app-breadcrumb></app-breadcrumb>
+
+                    <h1 class="inner_banner_title" data-aos="fade-up"
+                        data-aos-delay="200">Where Our Work <br> Meets the
+                        World</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section news-listing pt-0" style="background-color: #f8f7f5"
+    data-aos="fade-in" data-aos-duration="1000">
+    <div class="container">
+        <div class="news-fillter justify-content-between">
+            <div class="d-flex align-items-center gap-4 flex-wrap">
+                @for(item of newsType; track $index) {
+                <label class="custom-check">
+                    <input type="checkbox" name="fillter" (change)="OnTypeChange($event,item)" [value]="item?.id" >
+                    <span class="label-check"></span>
+                    <span [innerHTML]="item?.name"
+                        class="ms-2"></span>
+                </label>
+                }
+            </div>
+            <div class="d-flex align-items-center gap-4 flex-wrap">
+                <div class="news-dropdown">
+                    <span>Sort:</span>
+                    <select (change)="OnSort($event)">
+                    <option value="date-desc">Newest first</option>
+                    <option value="date-asc">Oldest first</option>
+                    <option value="title-asc">A → Z</option>
+                    <option value="title-desc">Z → A</option>
+                    </select>
+                </div>
+
+                <div class="news-dropdown">
+                    <span style="width: 125px;">By Topic:</span>
+                     <select (change)="OnCategoryChange($event)">
+                        <option value="" >All</option>
+                        @for (item of category; track $index) {
+                    <option [value]="item.id" >{{item.name}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        @if(newsList.length > 0) {
+        <div class="row">
+            @for(news of newsList; track $index) {
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="news-card"
+                    [style.background-image]="'url(' + news?.acf_fields?.thumbnail_image.url + ')'">
+                    <div class="news-card-body">
+                        <ul>
+                            <li>{{ news?._embedded?.['wp:term']?.[0]?.[0]?.name }}</li>
+                            <li>{{ news?.date | date: 'MMM dd, yyyy' }}</li>
+                            <li>{{ news?.acf_fields?.news_time_to_read }}
+                                Read</li>
+                        </ul>
+                        <h3>{{ news.title.rendered }}</h3>
+                        <a [routerLink]="news.slug" class="link-more position_chnge">
+                            <svg width="35" height="35" viewBox="0 0 35 35"
+                                fill="none">
+                                <circle cx="17.5" cy="17.5" r="17.5"
+                                    fill="#1C3C6D" />
+                                <line x1="10.5" y1="21.56" x2="23.49" y2="14.06"
+                                    stroke="#F8F7F5" stroke-width="2" />
+                                <path d="M13.92 11.5L23.49 14.06L20.92 23.62"
+                                    stroke="#F8F7F5" stroke-width="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        }
+        @if(totalPages > 1){
+
+            <app-pagination   [TotalPages]="totalPages"
+          (pageChanged)="OnPageChange($event)"
+          [currentPage]="currentPage" ></app-pagination>
+        }
+    </div>
+</section>
+
+<!-- <section class="urgent-media-assistance container"  data-aos="fade-up"
+            data-aos-duration="1000" data-aos-delay="200" [class.active]="isOpen">
+    <div class="d-flex  wrap align-items-center justify-content-between">
+        <div class="d-flex">
+            <span class="red-dot"></span>
+            <div class="urgent-media-assistance-content">
+                <h2>Urgent media assistance during active missions</h2>
+            </div>
+        </div>
+        <ul class="urgent-media-assistance-list">
+            <li>
+                <a href="mailto:info@docktour.ae">
+                    <strong>Email:</strong>
+                    <span class="d-block">info@docktour.ae</span>
+                </a>
+            </li>
+            <li>
+                <a href="tel:+971 52 847 1294">
+                    <strong>Phone</strong>
+                    <span class="d-block">+971 52 847 1294</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</section> -->
+
+<div class="sticky-call" (click)="toggleMenu()" [class.active]="isOpen">
+    <img src="assets/images/assistance-icon.png" alt="">
+</div>

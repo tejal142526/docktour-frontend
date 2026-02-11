@@ -1,0 +1,23 @@
+.image-container{
+    width: 100%;
+    height: calc(100vh - 0px);
+    display: flex;
+    margin-top: 72px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 9999;
+}
+.content{
+    text-align: center;
+}
+.content h2{
+    font-size: 3vw;
+} 
+.content p{
+    font-size: 2vw;
+    margin: 10px 0;
+}
+.text h1{
+    font-size: 12vw;
+}

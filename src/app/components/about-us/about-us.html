@@ -1,0 +1,228 @@
+<section
+  class="home-banner-section"
+  data-aos="fade-in"
+  data-aos-duration="1000"
+  data-aos-delay="300"
+>
+  <div
+    class="inner_banner_sect"
+    [style.background-image]="'url(' + acfFields?.banner_bg_image?.url + ')'"
+  >
+    <div class="container">
+      <div class="inner_banner_cont">
+        <app-breadcrumb></app-breadcrumb>
+        <h1 class="inner_banner_title">{{ acfFields?.banner_heading }}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section about_overview_sect" style="background-color: #1c3c6d">
+  <div class="container">
+    <div class="row about-gutter-x">
+      <div class="col-12 col-lg-8">
+        <div class="about-content">
+          <h5 data-aos="fade-up" data-aos-delay="200">
+            {{ acfFields?.card_heading }}
+          </h5>
+          <div class="opacity-80"
+            [innerHTML]="acfFields?.card_description"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          ></div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4" data-aos="fade-left" data-aos-delay="400">
+        <div class="">
+          <!-- <img [src]="acfFields?.card_image?.url" class="about-icon img-fluid" [alt]="acfFields?.card_image?.alt" /> -->
+           <ul class="image-list">
+            @for (item of acfFields?.card_image; track $index) {
+              <li>
+              <img [src]="item?.url" [alt]="item?.['alt']" class="img-fluid" />
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+@if (acfFields?.repeater_paragraph_content?.length) {
+  <section class="section mission-sector sector-wrapper p-0 " style="background-color: #f8f7f5">
+    <div class="container">
+      <div class="swiper sectorSwiper position-relative">
+        <div class="swiper-wrapper">
+          @for (cards of acfFields?.repeater_paragraph_content; track $index) {
+            <div class="swiper-slide d-flex justify-content-center align-items-center">
+              <div class="mission_cont" data-aos="fade-in" data-aos-duration="1200">
+                <p class="overview-text"><span></span> {{ cards?.repeater_paragraph_label }}</p>
+                <div class="mission_text" [innerHTML]="cards?.repeater_paragraph_description"></div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="pillars_sect pillars-about-sect">
+        <p class="overview-text" data-aos="fade-up" data-aos-delay="200">
+          <span></span>{{ acfFields?.repeatercard_label }}
+        </p>
+        <h3 class="name" data-aos="fade-up" data-aos-delay="300">
+          {{ acfFields?.repeatercard_heading }}
+        </h3>
+      </div>
+    </div>
+
+    <img src="assets/images/grey-left-vector-line.svg" alt="red left line" class="red-left-line" />
+    <img
+      src="assets/images/grey-right-vector-line.svg"
+      alt="red "
+      class="red-right-line about-bottom-line"
+    />
+  </section>
+}
+
+@if (acfFields?.repeater_cards?.length) {
+  <section class="section pillars_main pillars-about pt-0" style="background-color: #f8f7f5">
+    <img
+      src="assets/images/grey-right-vector-line.svg"
+      alt="red right line"
+      class="about-pillar-line"
+    />
+    <div class="container">
+      <div class="pillars_sect">
+        <p class="overview-text" data-aos="fade-up" data-aos-delay="200">
+          <span></span>{{ acfFields?.repeatercard_label }}
+        </p>
+        <h3 class="name" data-aos="fade-up" data-aos-delay="300">
+          {{ acfFields?.repeatercard_heading }}
+        </h3>
+
+        <div class="news-slider-full" data-aos="fade-up" data-aos-delay="200">
+          <div class="swiper newsSlider card-height-wrapper mt-3">
+            <div class="swiper-wrapper">
+              @for (card of acfFields?.repeater_cards; track $index) {
+                <div class="swiper-slide">
+                  <div class="news-card-inner">
+                    <img
+                      class="icon"
+                      [alt]="card?.repeatercard_image?.alt_text"
+                      [src]="card?.repeatercard_image?.url"
+                    />
+                    <h4>{{ card?.repeatercard_title }}</h4>
+                    <p>{{ card?.repeatercard_description }}</p>
+                  </div>
+                </div>
+              }
+            </div>
+            <div class="news-pagination swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+}
+
+@if (leaderList.length) {
+  <section class="section directors_main" data-aos="fade-in" data-aos-duration="1000">
+    <div class="container">
+      <div class="pillars_sect">
+        <p class="overview-text" data-aos="fade-up" data-aos-delay="200" style="color: #090909">
+          <span style="background-color: #090909"></span>Board of Directors
+        </p>
+        <h3 class="name" data-aos="fade-up" data-aos-delay="300" style="color: #1c3c6d">
+          Trusted Leaders Driving Healthcare Forward
+        </h3>
+
+        <div class="news-slider-full" data-aos="fade-up" data-aos-delay="200">
+          <div
+            (mousemove)="onMouseMove($event)"
+            (mouseleave)="onMouseLeave()"
+            class="swiper newsSlider1 mt-3 position-relative"
+            #leaderSlider
+          >
+            <div class="swiper-wrapper">
+              @for (leaders of leaderList; track $index) {
+                <div class="swiper-slide">
+                  <div class="director_cont">
+                    <div class="director_bg position-relative mb-2">
+                      <span>
+                        <img
+                          [src]="leaders?.acf_fields?.founder_image?.url"
+                          [alt]="leaders?.acf_fields?.founder_image?.alt_text"
+                        />
+                      </span>
+                      <a href="javascript:void(0)" class="plus_icon toggle-desc">
+                        <img src="assets/images/plus-red.svg" alt="" />
+                      </a>
+                      <div class="description">
+                        <!-- <div [innerHTML]="leaders?.acf_fields?.founder_description"></div> -->
+                        <p>
+                          <img class="left_img" src="assets/images/quote_left.svg" alt="" />
+                          {{ leaders?.acf_fields?.founder_description }}
+                          <img src="assets/images/quote_right.svg" alt="" />
+                        </p>
+                      </div>
+                    </div>
+                    <div class="director_details d-flex justify-content-between">
+                      <div>
+                        <h5>{{ leaders?.title?.rendered }}</h5>
+                        <p>{{ leaders?.acf_fields?.founder_designation }}</p>
+                      </div>
+                      @if (leaders?.acf_fields?.founder_linkedin) {
+                        <a href="{{ leaders?.acf_fields?.founder_linkedin }}" target="_blank">
+                          <img src="assets/images/linkdin.svg" alt="linkedIn logo" class="LinkedIn"
+                        /></a>
+                      }
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+            <div class="news-prev arrow">Prev</div>
+            <div class="news-next arrow">Next</div>
+            <div class="news-pagination swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+}
+
+@if (acfFields?.repeater_cards_2?.length) {
+  <section class="hero-slider about-bottom-slider hero-style about_slider" data-aos="fade-in" data-aos-duration="1000">
+    <div class="swiper-container" id="heroSwiper">
+      <div class="swiper-wrapper">
+        @for (cards of acfFields?.repeater_cards_2; track $index; let i = $index) {
+          <div class="swiper-slide">
+            <div class="slide-inner">
+              <div class="slide-inner-img position-relative">
+                <img
+                  class="slide-img"
+                  [src]="cards?.repeatercard_image_2?.url"
+                  [alt]="cards?.repeatercard_title_2"
+                />
+              </div>
+              <div class="container">
+                <div class="content-box">
+                  <div data-swiper-parallax="300" class="slide-title">
+                    <h2>{{ i + 1 }}. {{ cards?.repeatercard_title_2 }}</h2>
+                  </div>
+
+                  <div data-swiper-parallax="400" class="slide-text">
+                    <p>{{ cards?.repeatercard_description_2 }}</p>
+                  </div>
+
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="swiper-pagination hero-pagination container"></div>
+    </div>
+  </section>
+}

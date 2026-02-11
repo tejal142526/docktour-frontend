@@ -1,0 +1,7 @@
+.news-slider-full {
+  width: calc(100vw - (50vw - 650px));
+  max-width: none;
+  position: relative;
+  left: 0;
+  overflow: visible;
+}

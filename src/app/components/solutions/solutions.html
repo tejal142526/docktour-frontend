@@ -1,0 +1,220 @@
+<section
+  class="home-banner-section"
+  data-aos="fade-in"
+  data-aos-duration="1000"
+  data-aos-delay="300"
+>
+  <div
+    class="inner_banner_sect"
+    [style.background-image]="'url(' + solutionData?.banner_bg_image?.url + ')'"
+  >
+    <div class="container">
+      <div class="inner_banner_cont">
+        <app-breadcrumb></app-breadcrumb>
+        <h1 class="inner_banner_title">{{ solutionData?.banner_heading }}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+@if (solutionData?.paragrapgh_description) {
+  <section class="section about_overview_sect" style="background-color: #1c3c6d">
+    <div class="container">
+      <div class="row about-gutter-x align-items-center">
+        <div class="col-12">
+          <div class="about-content mw-100 solution-cont" data-aos="fade-up" data-aos-delay="200">
+            <!-- <div class="mission_text"
+              [innerHTML]="cards?.repeater_paragraph_description"></div> -->
+            <h5
+              data-aos="fade-up"
+              data-aos-delay="200"
+              [innerHTML]="solutionData?.paragrapgh_description"
+            ></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+}
+
+<section class="rapid-section section solutions-section position-relative">
+  <div class="container rapid-container">
+    <div class="row">
+      <div class="col-12 mb-4">
+        <p class="overview-text" data-aos="slide-up" data-aos-delay="200">
+          <span></span>Our Solutions
+        </p>
+        <div class="d-flex justify-content-between align-items-end">
+          <h2 class="main-title" data-aos="slide-up" data-aos-delay="300">
+            Transformative Healthcare <br />
+            Solutions for Every Horizon
+          </h2>
+        </div>
+      </div>
+    </div>
+    <!-- fetured Solutions Section  -->
+    @if (solutionList) {
+      @for (data of solutionList; track $index) {
+        @if (data?.acf_fields?.solutions_details_isfeatured) {
+          <a
+            href="#myModal"
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+            (click)="openModal(data)"
+          >
+            <div class="row align-items-center">
+              <div class="col-12 col-md-8">
+                <div class="case-study-img vector-right">
+                  <img
+                    [src]="data?.acf_fields?.solutions_details_image?.sizes?.large"
+                    [alt]="data?.acf_fields?.solutions_details_image.alt"
+                  />
+                  <!-- <img src="assets/images/solution-subtract.png" alt="" class="solution-subtract" /> -->
+                </div>
+              </div>
+              <div class="col-12 col-md-4" data-aos="slide-up" data-aos-delay="300">
+                <div class="case-study-detail">
+                  <h3>
+                    {{ data?.acf_fields?.solutions_details_heading }}
+                    <!-- Fully Integrated Healthcare Projects -->
+                  </h3>
+                  <a href="javascript:void(0)" class="link-more position_chnge">
+                    <svg width="35" height="35" viewBox="0 0 35 35" fill="none">
+                      <circle cx="17.5" cy="17.5" r="17.5" fill="#1C3C6D" />
+                      <line
+                        x1="10.5"
+                        y1="21.56"
+                        x2="23.49"
+                        y2="14.06"
+                        stroke="#F8F7F5"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M13.92 11.5L23.49 14.06L20.92 23.62"
+                        stroke="#F8F7F5"
+                        stroke-width="2"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </a>
+        }
+      }
+    }
+
+    <!-- List Solutions Section  -->
+    @if (solutionList.length > 0) {
+      <div class="solution_blogs">
+        <div class="row">
+          @for (data of solutionList; track $index) {
+            @if (!data?.acf_fields?.solutions_details_isfeatured) {
+              <div class="col-12 col-md-6" data-aos="slide-up" data-aos-delay="200">
+                <a
+                  class="solution_blogs_cont"
+                  href="javascript:void(0)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#myModal"
+                  (click)="openModal(data)"
+                >
+                  <span>
+                    <img
+                      [src]="data?.acf_fields?.solutions_details_image?.sizes?.large"
+                      [alt]="data?.acf_fields?.solutions_details_image.alt"
+                    />
+                  </span>
+                  <div class="d-flex wrap-2 align-items-center justify-content-between pt-3">
+                    <h4>{{ data?.acf_fields?.solutions_details_heading }}</h4>
+                    <a href="javascript:void(0)" class="link-more">
+                      <svg width="35" height="35" viewBox="0 0 35 35" fill="none">
+                        <circle cx="17.5" cy="17.5" r="17.5" fill="#1C3C6D" />
+                        <line
+                          x1="10.5"
+                          y1="21.56"
+                          x2="23.49"
+                          y2="14.06"
+                          stroke="#F8F7F5"
+                          stroke-width="2"
+                        />
+                        <path
+                          d="M13.92 11.5L23.49 14.06L20.92 23.62"
+                          stroke="#F8F7F5"
+                          stroke-width="2"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </a>
+              </div>
+            }
+          }
+        </div>
+      </div>
+    }
+  </div>
+  <img src="assets/images/grey-top-right-vector-line.svg" alt="" class="red-top-right-line" />
+</section>
+
+<!-- The Send report Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-dialog-centered solution_modal">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="padd_adjust">
+          <h4 class="modal-title pb-0">
+            {{ selectedData?.acf_fields?.solutions_details_heading }}
+          </h4>
+        
+        </div>
+        <button type="button" data-bs-dismiss="modal" class="close-modal">
+          <img src="assets/images/cross-arrow.svg" alt="" class="" />
+        </button>
+      </div>
+        <p class="modal-subtext">
+            {{ selectedData?.acf_fields?.solutions_details_description }}
+          </p>
+
+      <!-- Modal body -->
+      @if (selectedData?.acf_fields?.solutions_details_pointers?.length > 0) {
+        <div class="modal-body pt-0">
+          <div class="report_cont">
+            <div class="row">
+              @for (
+                modalData of selectedData?.acf_fields?.solutions_details_pointers;
+                track $index
+              ) {
+                @if (modalData) {
+                  <div class="col-12 col-md-6">
+                    <div class="trust-cont trust-cont-2">
+                       <h4 class="d-flex align-items-center gap-2 mb-2">
+                        @if (modalData?.solutions_pointers_icon) {
+
+                        
+                        <img
+                          [src]="
+                            modalData?.solutions_pointers_icon?.url "
+                          [alt]="'red tick icon'"
+                          class="red-tick"
+                        />
+                        }
+                      
+                        {{ modalData?.solutions_pointers_heading }}
+                      </h4>
+                       <p class="numerical-value"> {{ modalData?.solutions_numerical_value }} </p>
+                     
+                      <p class="modal-subtext">
+                        {{ modalData?.solutions_pointers_description }}
+                      </p>
+                    </div>
+                  </div>
+                }
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

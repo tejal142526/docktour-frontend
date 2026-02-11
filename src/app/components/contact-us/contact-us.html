@@ -1,0 +1,329 @@
+<section
+  class="home-banner-section"
+  data-aos="fade-in"
+  data-aos-duration="1000"
+  data-aos-delay="300"
+>
+  <div
+    class="inner_banner_sect"
+    [style.background-image]="
+      'url(' +
+      (isMobile()
+        ? data?.acf_fields?.banner_mobile_image?.url
+        : data?.acf_fields?.banner_bg_image?.url) +
+      ')'
+    "
+  >
+
+    <div class="container">
+      <div class="inner_banner_cont">
+        <app-breadcrumb></app-breadcrumb>
+        <h1 class="inner_banner_title" [innerHTML]="data.acf_fields?.banner_heading">
+          Get in Touch <br />
+          With Our Team
+        </h1>
+      </div>
+    </div>
+  </div>
+</section>
+@if(data?.acf_fields?.paragrapgh_description){
+
+  <section class="section about_overview_sect" style="background-color: #1c3c6d">
+    <div class="container">
+    <div class="row about-gutter-x align-items-center">
+      <div class="col-12 col-md-12 col-lg-12">
+        <div
+          class="about-content mw-100 about-content-2 solution-cont"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <!-- <div class="mission_text"
+              [innerHTML]="cards?.repeater_paragraph_description"></div> -->
+          <h5 data-aos="fade-up" data-aos-delay="200">
+            {{ data?.acf_fields?.paragrapgh_description }}
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+}
+
+<section class="contact-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="wrap" style="position: relative">
+          <div class="contact-layout" data-aos="slide-up" data-aos-delay="400">
+            <div class="left-col">
+              <div class="contact-details">
+                <strong>Phone no.</strong>
+                <p>+971 4 223 9175 | +971 2 658 3041</p>
+              </div>
+
+              <div class="contact-details">
+                <strong>Head Office Address</strong>
+                <p>
+                  Office 1204, Al Noor Business Tower,<br />
+                  Sheikh Zayed Road, Dubai, United Arab Emirates
+                </p>
+              </div>
+
+              <div class="contact-map" aria-hidden="true">
+                <!-- Replace map.jpg with the actual map image file -->
+                <!-- <img src="map.jpg" alt="Map location placeholder"> -->
+                <iframe
+                  width="100%"
+                  style="border: 0; border-radius: 10px"
+                  loading="lazy"
+                  allowfullscreen
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14434.502182656944!2d55.278444!3d25.197201!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f682c7a7f3d8f%3A0x8b77d7f50e7b6a5a!2sClover%20Bay%20Tower!5e0!3m2!1sen!2sae!4v1730000000000"
+                >
+                </iframe>
+              </div>
+            </div>
+
+            <div class="divider" aria-hidden="true"></div>
+
+            <div class="right-col">
+              <div class="contact-form">
+                <!-- <h3>Contact Us</h3>
+                                <p class="muted">Send us a message and we'll get back to you soon.</p> -->
+
+                <div class="row" [formGroup]="contactForm">
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <input
+                        id="name"
+                        appNameOnly
+                        class="input-underline"
+                        type="text"
+                        formControlName="name"
+                        placeholder=" "
+                      />
+                      <label class="label" for="name">Name <span class="req">*</span></label>
+                      <div
+                        class="error-message"
+                        *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.invalid"
+                      >
+                        Name is required
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <input
+                        id="surname"
+                        appNameOnly
+                        class="input-underline"
+                        formControlName="surname"
+                        type="text"
+                        placeholder=" "
+                      />
+                      <label class="label" for="surname">Surname <span class="req">*</span></label>
+                      <div
+                        class="error-message"
+                        *ngIf="
+                          contactForm.get('surname')?.touched && contactForm.get('surname')?.invalid
+                        "
+                      >
+                        Surname is required
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <input
+                        id="email"
+                        class="input-underline"
+                        formControlName="email"
+                        type="email"
+                        placeholder=" "
+                      />
+                      <label class="label" for="email">Email <span class="req">*</span></label>
+                      <div
+                        class="error-message"
+                        *ngIf="
+                          contactForm.get('email')?.touched &&
+                          contactForm.get('email')?.errors?.['required']
+                        "
+                      >
+                        Email is required
+                      </div>
+                      <div
+                        class="error-message"
+                        *ngIf="
+                          contactForm.get('email')?.touched &&
+                          contactForm.get('email')?.errors?.['email']
+                        "
+                      >
+                        Invalid Email
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <input
+                        id="phone"
+                        appPhone
+                        class="input-underline"
+                        formControlName="phone"
+                        type="text"
+                        placeholder=" "
+                      />
+                      <label class="label" for="phone">Phone no <span class="req">*</span></label>
+                      <div
+                        class="error-message"
+                        *ngIf="
+                          contactForm.get('phone')?.touched && contactForm.get('phone')?.invalid
+                        "
+                      >
+                        Phone is required
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <div class="form-group">
+                      <input
+                        id="organization"
+                        formControlName="organization"
+                        class="input-underline"
+                        type="text"
+                        placeholder=" "
+                      />
+                      <label class="label" for="organization"
+                        >Organization <span class="req">*</span></label
+                      >
+                      <div
+                        class="error-message"
+                        *ngIf="
+                          contactForm.get('organization')?.touched &&
+                          contactForm.get('organization')?.invalid
+                        "
+                      >
+                        Organistion is required
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="country-select-wrapper">
+                      <label class="label" [class.float]="isFloating || isFocused">
+                        Country <span class="req">*</span>
+                      </label>
+
+                      <div
+                        class="select-container"
+                        [class.focused]="isFocused"
+                        [class.error]="showError"
+                      >
+                        <div class="selected-option" (click)="toggleDropdown()">
+                          <div class="selected-content">
+                            <img
+                              *ngIf="selectedCountry"
+                              [src]="selectedCountry.flagUrl"
+                              [alt]="selectedCountry.name"
+                              class="flag-img"
+                            />
+                            <span class="country-name" [class.placeholder]="!selectedCountry">
+                              {{ selectedCountry ? selectedCountry.name : '' }}
+                            </span>
+                          </div>
+                          <!-- <svg class="chevron" [class.open]="isOpen" width="12" height="12"
+                                                        viewBox="0 0 12 12">
+                                                        <path fill="currentColor" d="M6 9L1 4h10z" />
+                                                    </svg> -->
+
+                          <svg
+                            width="16"
+                            height="10"
+                            class="chevron"
+                            [class.open]="isOpen"
+                            viewBox="0 0 16 10"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M14.707 0.707153L7.70703 7.70715L0.707032 0.707153"
+                              stroke="#1C3C6D"
+                              stroke-width="2"
+                            />
+                          </svg>
+                        </div>
+
+                        <div class="dropdown" *ngIf="isOpen">
+                          <div class="search-box">
+                            <input
+                              type="text"
+                              placeholder="Search country..."
+                              [(ngModel)]="searchTerm"
+                              (input)="filterCountries()"
+                              (click)="$event.stopPropagation()"
+                            />
+                          </div>
+                          <div class="options-list">
+                            <div
+                              *ngFor="let country of filteredCountries"
+                              class="option"
+                              [class.selected]="selectedCountry?.code === country.code"
+                              (click)="selectCountry(country)"
+                            >
+                              <img [src]="country.flagUrl" [alt]="country.name" class="flag-img" />
+                              <span class="country-info">
+                                <span class="country-name">{{ country.name }}</span>
+                                <span class="dial-code">{{ country.dialCode }}</span>
+                              </span>
+                            </div>
+                            <div *ngIf="filteredCountries.length === 0" class="no-results">
+                              No countries found
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="error-message" *ngIf="showError">Please select a country</div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-12">
+                    <div class="form-group">
+                      <textarea
+                        id="message"
+                        formControlName="message"
+                        class="input-underline"
+                        placeholder=" "
+                        rows="3"
+                      ></textarea>
+                      <label class="label" for="message">Message <span class="req">*</span></label>
+                      <div
+                        class="error-message"
+                        *ngIf="
+                          contactForm.get('message')?.touched && contactForm.get('message')?.invalid
+                        "
+                      >
+                        Message is required
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 mt-0 mt-md-3">
+                    <!-- <a href="javascript:Void(0)" class="btn btn-sector">
+                                            <span>Submit</span>
+                                        </a> -->
+                    <button type="submit" class="btn btn-sector" (click)="onSubmit()">
+                      <span>Submit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img src="assets/images/contact-us-vector.svg" alt="contact-us-vector" class="contact-vector" />
+</section>
